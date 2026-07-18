@@ -48,5 +48,8 @@ h1{
     border: none;
     padding: 10px;
     width: 80%;
-    border-radius: 5px;
+    border-radius: 8px;
+    text-align: center;
+    color: rgb(53, 53, 105);
+    background-color: rgb(164, 139, 205);
 }
