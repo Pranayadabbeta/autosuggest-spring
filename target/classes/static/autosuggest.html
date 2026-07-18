@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Suggest</title>
+    <style>
+    body {
+        text-align:center;
+
+    }
+    .gear {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+    }
+    .pill {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+    }
+    .logo {
+        margin-top: 150px;
+        font-size: 100px;
+        color: black;
+    }
+    .logo-first {
+        color: blueviolet;
+    }
+    .search-box {
+        width: 75%;
+        height: 50px;
+        font-size: 20px;
+        //top,right,bottom,left
+        padding: 10px 10px 10px 30px;
+        border-radius: 25px;
+        border-style: solid;
+        border-color: black;
+        border-width: 1px;
+    }
+    .search-suggestions {
+            width: 65%;
+            margin: 8px 0 0;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgb(255, 255, 255);
+            overflow: hidden;
+            text-align: left;
+            margin: 0px auto;
+        }
+        .suggestion {
+            padding: 10px 14px;
+            border-bottom: 1px solid #f2f2f2;
+            font-size: 14px;
+        }
+    
+    .phrase {
+            font-size: 25px;
+            color:rgb(4, 16, 28);
+    }
+    .search-icon {
+        position: absolute;
+        font-size: 20px;
+    }
+    </style>
+</head>
+<body>
+    <span class="gear"> &#x2699; 
+    </span>
+    <span class="pill"> &#x20222; online | &#x1F552; </span>
+    <br>
+    <br>
+    <h1 class = "logo"> <span class ="logo-first">Being</span>Infinity</h1>
+    <p class="phrase"> One million phrases.Four algorithms.Prefix based autosuggest.
+    </p> 
+    <span class="search-icon"> &#128269;</span>
+    <input class="search-box"  type="text" placeholder=" Start typing to search phrases...">
+      <div class="search-suggestions"> 
+        <br>
+            <!-- <div> Data Science</div> -->
+            <!-- <div> Cyber Security</div> -->
+    </div> 
+    
+    </div>
+    <script>
+    function getsearchSuggestions() {
+        var searchBox = document.getElementsByClassName("search-box")[0];
+        var searchSuggestions = document.getElementsByClassName("search-suggestions")[0];
+
+        var userInput = searchBox.value;
+        if(userInput.trim() == "") return;
+        var URL1 = "https://autosuggest-backend.onrender.com/api/autosuggest?q=";
+        var URL3 = "&algorithm=brute&limit=10&weighted=false";
+
+        var URL= URl1+ userInput+URL3;
+
+        fetch(URL)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            var searchResults = "";
+            var suggestions = data.results;
+            for(var i=0; i<data.results.length;i++)
+        {
+            searchResults += "<div class='suggestion'>" + 
+                suggestions[i].text + "</div>";
+    } 
+    searchSuggestions.innerHTML = searchResults;
+    })
+}
+    </script>
+
+</body>
+</html>
+ <!-- https://autosuggest-backend.onrender.com/api/autosuggest?q=ba&algorithm=brute&limit=10&weighted=false -->
+    
+   
