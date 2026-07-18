@@ -38,6 +38,7 @@ h1{
     margin-bottom: 20px;
     padding-bottom: 20px;
     background-color: black;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .card img{
     width: 100%;
